@@ -3,7 +3,7 @@ library(ggpubr)
 library(rstatix)
 library(purrr)
 
-analysis_data <- main_data %>% 
+analysis_data <- main_data_2014 %>% 
   dplyr::filter(country != 'tur') %>% 
   dplyr::select(-c(country, party_name, lrgen, eu_benefit)) %>% 
   dplyr::select(party_code, pol_side1, pol_side2, populist, region1, region2, 
@@ -17,13 +17,25 @@ test_data <- analysis_data %>%
                    eu_position, eu_intmark, eu_cohesion, eu_foreign, eu_budgets, eu_ep, eu_turkey))
 
 
-test_fun <- function(data, var, subse){
+test_fun <- function(data, subset_var, scale){
   
   data %>% 
-    dplyr::group_by(as.name(subse)) %>% 
-    rstatix::shapiro_test(as.name(var))
+    dplyr::group_by(as.name(subset_var)) %>% 
+    rstatix::shapiro_test(as.name(scale))
 }
 
+test_fun(data = test_data,
+         subset_var = 'region1',
+         scale = 'eu_dissent')
+
+fing <- 'region1'
+szar <- 'eu_dissent'
+
+
+
+test_data %>% 
+  dplyr::group_by(as.name(fing)) %>% 
+  rstatix::shapiro_test(as.name(szar))
 
 
 test_fun2 <- function(var) {
