@@ -1,12 +1,12 @@
 library(dplyr)
 
-raw_data <- read.csv('files/CHES_2014_Party_dataset.csv', stringsAsFactors = FALSE)
+raw_data_2014 <- read.csv('files/CHES_2014_Party_dataset.csv', stringsAsFactors = FALSE)
 
 populist_input <- read.csv('files/Populist_Parties_Input.csv', sep = ';', stringsAsFactors = FALSE)
 
 country_regions <- read.csv('files/Country_Regions_Input.csv', sep = ';', stringsAsFactors = FALSE)
 
-main_data_2014 <- raw_data %>% 
+main_data_2014 <- raw_data_2014 %>% 
   #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   dplyr::select(cname, party_name, party_id, lrgen,                                                             #Selecting the variables, which are needed for the analysis
                 eu_position,
@@ -86,3 +86,46 @@ table(main_data_2014$pol_side2, main_data_2014$populist)
 main_data_2014 %>% 
   dplyr::filter(populist == 'Populist' & pol_side1 == 'Center') %>% 
   dplyr::select(country, party_name)
+
+#------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------------------
+# 2019, change accordinf to data_nap_2014
+
+raw_data_2019 <- read.csv('files/CHES_2019_Party_dataset.csv', stringsAsFactors = FALSE)
+
+main_data_2019 <- raw_data_2019 %>% 
+  dplyr::select(country, party, party_id, lrgen,                                                             #Selecting the variables, which are needed for the analysis
+                eu_position,
+                eu_salience,
+                eu_dissent,
+                eu_benefit,
+                eu_intmark,
+                eu_cohesion,
+                eu_foreign,
+                eu_budgets,
+                eu_ep,
+                eu_turkey,
+                lrgen,
+                lrecon,
+                lrecon_salience,
+                galtan,
+                galtan_salience,
+                spendvtax,
+                deregulation,
+                redistribution,
+                econ_interven,
+                civlib_laworder,
+                sociallifestyle,
+                religious_principle,
+                immigrate_policy,
+                multiculturalism,
+                urban_rural,
+                regions,
+                ethnic_minorities,
+                nationalism,
+                antielite_salience,
+                corrupt_salience)
+  
+  
+
