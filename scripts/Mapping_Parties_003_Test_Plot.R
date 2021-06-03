@@ -68,6 +68,8 @@ desc_plot_eu <- desc_plot_eu + theme(legend.position='top',legend.direction='hor
 desc_plot_eu <- desc_plot_eu + theme(axis.text.x=element_text(color='black',size=10,face=c('bold.italic')),plot.caption=element_text(face='italic',size=8))
 desc_plot_eu <- desc_plot_eu + theme(axis.text.y=element_text(color='black',size=9),axis.title.y=element_text(face='bold',size=11))
 
+desc_plot_eu
+
 # Boxplot 1-10
 boxplot_data_2014_2 <- main_data_2014 %>%
   dplyr::select(party_name, pol_side2, eu_salience, eu_dissent, lrgen,
@@ -102,6 +104,8 @@ desc_plot_other <- desc_plot_other + labs(x=element_blank(),y='Evaluation scale'
 desc_plot_other <- desc_plot_other + theme(legend.position='top',legend.direction='horizontal',legend.title=element_blank(),legend.text=element_text(face='bold',size=10))
 desc_plot_other <- desc_plot_other + theme(axis.text.x=element_text(color='black',size=10,face=c('bold.italic')),plot.caption=element_text(face='italic',size=8))
 desc_plot_other <- desc_plot_other + theme(axis.text.y=element_text(color='black',size=9),axis.title.y=element_text(face='bold',size=11))
+
+desc_plot_other
 
 # Radar Graph
 
@@ -179,6 +183,8 @@ desc_plot_eu_2019 <- desc_plot_eu_2019 + theme(legend.position='top',legend.dire
 desc_plot_eu_2019 <- desc_plot_eu_2019 + theme(axis.text.x=element_text(color='black',size=10,face=c('bold.italic')),plot.caption=element_text(face='italic',size=8))
 desc_plot_eu_2019 <- desc_plot_eu_2019 + theme(axis.text.y=element_text(color='black',size=9),axis.title.y=element_text(face='bold',size=11))
 
+desc_plot_eu_2019
+
 # Boxplot 1-10
 boxplot_data_2019_2 <- main_data_2019 %>%
   dplyr::select(party, pol_side2, eu_salience, eu_dissent, lrgen,
@@ -213,5 +219,7 @@ desc_plot_other_2019 <- desc_plot_other_2019 + labs(x=element_blank(),y='Evaluat
 desc_plot_other_2019 <- desc_plot_other_2019 + theme(legend.position='top',legend.direction='horizontal',legend.title=element_blank(),legend.text=element_text(face='bold',size=10))
 desc_plot_other_2019 <- desc_plot_other_2019 + theme(axis.text.x=element_text(color='black',size=10,face=c('bold.italic')),plot.caption=element_text(face='italic',size=8))
 desc_plot_other_2019 <- desc_plot_other_2019 + theme(axis.text.y=element_text(color='black',size=9),axis.title.y=element_text(face='bold',size=11))
+
+desc_plot_other_2019
 
 #Radar Graph 2019
