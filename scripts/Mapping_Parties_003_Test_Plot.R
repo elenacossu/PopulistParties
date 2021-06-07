@@ -52,6 +52,14 @@ p1 <- p1 + theme(axis.title.x = element_text(face='bold',size=12),axis.title.y=e
 
 p1
 
+p3 <- ggplot(data=main_data_2014,aes(x = spendvtax,y=immigrate_policy,colour=region1)) + geom_point()
+p3 <- p3 + scale_colour_manual(values = c('red3','olivedrab3', 'mediumblue', 'yellow2'))
+p3 <- p3 + scale_x_continuous(limits=c(0,10),breaks=0:10) + scale_y_continuous(limits=c(0,10),breaks=0:10)
+p3 <- p3 + labs(x='Improving public services vs. reducing taxes',y='Immigration policy',caption='Source: 2014 Chapel Hill expert survey',color='GEO Areas')
+p3 <- p3 + geom_hline(yintercept=5, linetype='dashed', color = 'black') + geom_vline(xintercept=5, linetype='dashed', color = 'black')
+p3 <- p3 + theme(legend.position='top',legend.direction='horizontal',legend.title=element_text(face='bold',size=10),legend.text=element_text(face='bold',size=10))
+p3 <- p3 + theme(axis.title.x = element_text(face='bold',size=12),axis.title.y=element_text(face='bold',size=12),plot.caption=element_text(face='italic',size=8))
+
 # Boxplot 1-7
 boxplot_data_2014 <- main_data_2014 %>%
   dplyr::select(party_name, pol_side2, eu_position, eu_intmark, eu_cohesion, eu_foreign, eu_budgets) %>%
@@ -166,6 +174,14 @@ p2 <- p2 + theme(legend.position='top',legend.direction='horizontal',legend.titl
 p2 <- p2 + theme(axis.title.x = element_text(face='bold',size=12),axis.title.y=element_text(face='bold',size=12),plot.caption=element_text(face='italic',size=8))
 
 p2
+
+p4 <- ggplot(data=main_data_2019,aes(x = spendvtax,y=immigrate_policy,colour=region1)) + geom_point()
+p4 <- p4 + scale_colour_manual(values = c('red3','olivedrab3', 'mediumblue', 'yellow2'))
+p4 <- p4 + scale_x_continuous(limits=c(0,10),breaks=0:10) + scale_y_continuous(limits=c(0,10),breaks=0:10)
+p4 <- p4 + labs(x='Improving public services vs. reducing taxes',y='Immigration policy',caption='Source: 2019 Chapel Hill expert survey',color='GEO Areas')
+p4 <- p4 + geom_hline(yintercept=5, linetype='dashed', color = 'black') + geom_vline(xintercept=5, linetype='dashed', color = 'black')
+p4 <- p4 + theme(legend.position='top',legend.direction='horizontal',legend.title=element_text(face='bold',size=10),legend.text=element_text(face='bold',size=10))
+p4 <- p4 + theme(axis.title.x = element_text(face='bold',size=12),axis.title.y=element_text(face='bold',size=12),plot.caption=element_text(face='italic',size=8))
 
 # Boxplot 2019 1-7
 boxplot_data_2019 <- main_data_2019 %>%

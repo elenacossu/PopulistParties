@@ -81,6 +81,7 @@ main_data_2014[which(main_data_2014$party_code == 2406), "party"] <- "NA"
 table(main_data_2014$populist)
 table(main_data_2014$pol_side1, main_data_2014$populist)
 table(main_data_2014$pol_side2, main_data_2014$populist)
+table(main_data_2014$pol_side2, main_data_2019$region1)
 
 main_data_2014 %>% 
   dplyr::filter(populist == 'Populist' & pol_side1 == 'Center') %>% 
@@ -167,6 +168,7 @@ main_data_2014[which(main_data_2014$party_code == 2406), "party"] <- "NA"
 table(main_data_2019$populist)
 table(main_data_2019$pol_side1, main_data_2019$populist)
 table(main_data_2019$pol_side2, main_data_2019$populist)
+table(main_data_2019$pol_side2, main_data_2019$region1)
 
 main_data_2019 %>% 
   dplyr::filter(populist == 'Populist' & pol_side1 == 'Center') %>% 

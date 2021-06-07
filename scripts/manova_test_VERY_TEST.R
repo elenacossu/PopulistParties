@@ -7,7 +7,7 @@ eu_cohesion
 region1
 pol_side2
 
-test <- main_data_2014 %>% 
+test <- main_data_2019 %>% 
   dplyr::select(region1,
                 pol_side2,
                 eu_position,
@@ -17,13 +17,18 @@ test <- main_data_2014 %>%
                 eu_cohesion,
                 eu_foreign,
                 eu_budgets,
+                galtan,
+                galtan_salience,
+                lrecon,
+                lrecon_salience,
+                lrgen,
                 spendvtax,
                 deregulation,
                 redistribution,
                 econ_interven,
                 civlib_laworder,
                 sociallifestyle,
-                religious_principle,
+                #religious_principle,
                 immigrate_policy,
                 multiculturalism,
                 urban_rural,
@@ -33,20 +38,26 @@ test <- main_data_2014 %>%
                 antielite_salience,
                 corrupt_salience)
 
-test_manova <- manova(cbind(eu_position,
+test_manova <- manova(cbind(#pol_side2,
+                            eu_position,
                             eu_salience,
                             eu_dissent,
                             eu_intmark,
                             eu_cohesion,
                             eu_foreign,
                             eu_budgets,
+                            galtan,
+                            galtan_salience,
+                            lrecon,
+                            lrecon_salience,
+                            lrgen,
                             spendvtax,
                             deregulation,
                             redistribution,
                             econ_interven,
                             civlib_laworder,
                             sociallifestyle,
-                            religious_principle,
+                            #religious_principle,
                             immigrate_policy,
                             multiculturalism,
                             urban_rural,
@@ -58,6 +69,8 @@ test_manova <- manova(cbind(eu_position,
                       data = test)
 
 test_results <- summary.aov(test_manova)
+
+test_results
 
 test_results[[1]][[4]][1]
 
