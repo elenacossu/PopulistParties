@@ -28,14 +28,23 @@ analysis_data_2019 <- main_data_2019_with_clust %>%
                 antielite_salience,
                 corrupt_salience)
 
-# index means with political sides
+# total index means
+
+index_means_total <- analysis_data_2019 %>%
+  dplyr::select(-party_code) %>%
+  dplyr::summarise_if(is.numeric, mean, na.rm = TRUE) %>%
+  tidyr::pivot_longer(dplyr::everything(), names_to = 'attribute', values_to = 'mean') %>% 
+  dplyr::rename(Total = mean)
+
+# index means with political sides with total
 
 pol_sides_means <- analysis_data_2019 %>%
   dplyr::select(-party_code) %>%
   dplyr::group_by(pol_side2) %>% 
   dplyr::summarise_if(is.numeric, mean, na.rm = TRUE) %>% 
   tidyr::pivot_longer(-pol_side2, names_to = 'attribute', values_to = 'mean') %>% 
-  tidyr::pivot_wider(names_from = pol_side2, values_from = mean)
+  tidyr::pivot_wider(names_from = pol_side2, values_from = mean) %>% 
+  dplyr::left_join(., index_means_total, by = "attribute")
 
 
 # index means wth clusters
@@ -45,14 +54,13 @@ clusters_means <- analysis_data_2019 %>%
   dplyr::group_by(clusters) %>% 
   dplyr::summarise_if(is.numeric, mean, na.rm = TRUE) %>% 
   tidyr::pivot_longer(-clusters, names_to = 'attribute', values_to = 'mean') %>% 
-  tidyr::pivot_wider(names_from = clusters, values_from = mean)
+  tidyr::pivot_wider(names_from = clusters, values_from = mean) %>% 
+  dplyr::left_join(., index_means_total, by = "attribute") %>% 
+  dplyr::rename(Cluster_1 = `1`, 
+                Cluster_2 = `2`, 
+                Cluster_3 = `3`, 
+                Cluster_4 = `4`)
 
-# total index means
-
-index_means_total <- analysis_data_2019 %>%
-  dplyr::select(-party_code) %>%
-  dplyr::summarise_if(is.numeric, mean, na.rm = TRUE) %>%
-  tidyr::pivot_longer(dplyr::everything(), names_to = 'attribute', values_to = 'mean')
 
 # anova using pol sides
 
@@ -101,7 +109,11 @@ for (i in 1:length(pol_sides_manova_results)) {
 }
 
 pol_side_manova_table <- pol_side_manova_table %>% 
-  dplyr::mutate(index = stringr::str_replace(index, ' Response ', ''))
+  dplyr::mutate(index = stringr::str_replace(index, ' Response ', '')) %>% 
+  dplyr::mutate(stars = dplyr::case_when(p_value <= 0.001 ~ "***",
+                                        p_value <= 0.01 ~ "**", 
+                                        p_value <= 0.05 ~ "*",
+                                        TRUE ~ ""))
 
 
 # anova using clusters
@@ -149,4 +161,17 @@ for (i in 1:length(clusters_manova_results)) {
 }
 
 clusters_manova_table <- clusters_manova_table %>% 
-  dplyr::mutate(index = stringr::str_replace(index, ' Response ', ''))
+  dplyr::mutate(index = stringr::str_replace(index, ' Response ', '')) %>% 
+  dplyr::mutate(stars = dplyr::case_when(p_value <= 0.001 ~ "***",
+                                         p_value <= 0.01 ~ "**", 
+                                         p_value <= 0.05 ~ "*",
+                                         TRUE ~ ""))
+
+# Joining pol side means and anova results
+pol_side_desc_and_manova_results <- pol_sides_means %>% 
+  dplyr::left_join(., pol_side_manova_table, by = c("attribute" = "index"))
+
+
+# Joining cluster means and anova results
+clusters_desc_and_manova_results <- clusters_means %>% 
+  dplyr::left_join(., clusters_manova_table, by = c("attribute" = "index"))
