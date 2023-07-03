@@ -1,7 +1,0 @@
- ;group1;group2;null,value;estimate;conf,low;conf,high;p,adj;p,adj,signif
-pol_side2;Left;Center;0,00;2,20;1,53;2,86;0,000;****
-pol_side2;Left;Right;0,00;3,92;3,33;4,51;0,000;****
-pol_side2;Left;Populist;0,00;1,86;1,16;2,56;0,000;****
-pol_side2;Center;Right;0,00;1,72;1,07;2,38;0,000;****
-pol_side2;Center;Populist;0,00;-0,34;-1,09;0,41;0,653;ns
-pol_side2;Right;Populist;0,00;-2,06;-2,74;-1,37;0,000;****

@@ -4,3 +4,6 @@
 .Ruserdata
 .xlsx
 .xls
+.Rdata
+.httr-oauth
+.DS_Store
