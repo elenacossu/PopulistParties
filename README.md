@@ -13,4 +13,4 @@ Division by region manually created input input
 For any question feel free to contact the author.
 
 If you used these scripts or you enjoyed the paper you can Buy me a Coffee:
-[https://elenacossu.quarto.pub](https://www.buymeacoffee.com/elenacossu)https://www.buymeacoffee.com/elenacossu
+(https://www.buymeacoffee.com/elenacossu)[https://www.buymeacoffee.com/elenacossu]
